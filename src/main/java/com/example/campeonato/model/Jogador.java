@@ -10,8 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tb_jogador")
@@ -27,7 +27,7 @@ public class Jogador implements Serializable{
 	private String genero;
 	private Double altura;
 	
-	@Transient
+	@OneToOne(mappedBy = "capitao")
 	private Time timeQueCapitaneia;
 	@ManyToOne
 	@JoinColumn(name = "time_id")
