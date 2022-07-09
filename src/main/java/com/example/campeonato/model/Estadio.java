@@ -3,6 +3,8 @@ package com.example.campeonato.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Transient;
+
 public class Estadio implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -10,7 +12,9 @@ public class Estadio implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	@Transient
 	private Time time;
+	@Transient
 	private Endereco endereco;
 	
 	public Estadio() {

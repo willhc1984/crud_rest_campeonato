@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Transient;
+
 public class Campeonato implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -13,7 +15,9 @@ public class Campeonato implements Serializable{
 	private Integer ano;
 	private String nome;
 	
+	@Transient
 	private Set<Partida> partidas = new HashSet<>();
+	@Transient
 	private Set<Time> times = new HashSet<>();
 	
 	public Campeonato() {	

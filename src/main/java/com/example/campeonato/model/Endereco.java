@@ -2,6 +2,8 @@ package com.example.campeonato.model;
 
 import java.util.Objects;
 
+import javax.persistence.Transient;
+
 public class Endereco {
 	
 	private Integer id;
@@ -10,6 +12,7 @@ public class Endereco {
 	private String complemento;
 	private String bairro;
 	
+	@Transient
 	private Estadio estadio;
 	
 	public Endereco() {

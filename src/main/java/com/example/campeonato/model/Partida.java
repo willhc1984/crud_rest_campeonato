@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Transient;
+
 public class Partida implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -13,8 +15,11 @@ public class Partida implements Serializable{
 	private Integer pontuacaoMandante;
 	private Integer pontuacaoVisitante;
 	
+	@Transient
 	private Time visitante;
+	@Transient
 	private Time mandante;
+	@Transient
 	private Campeonato campeonato;
 	
 	public Partida() {
