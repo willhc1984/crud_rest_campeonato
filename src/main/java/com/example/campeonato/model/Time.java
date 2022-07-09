@@ -15,14 +15,19 @@ public class Time implements Serializable{
 	private Jogador capitao;
 	
 	private Set<Jogador> jogadores = new HashSet<>();
+	private Set<Campeonato> campeonatos = new HashSet<>();
+	private Set<Partida> partidasComoMandante = new HashSet<>();
+	private Set<Partida> partidasComoVisitante = new HashSet<>();
+	private Estadio sede;
 	
 	public Time() {
 	}
 
-	public Time(Integer id, String nome) {
+	public Time(Integer id, String nome, Estadio sede) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.sede = sede;
 	}
 
 	public Integer getId() {
@@ -49,8 +54,28 @@ public class Time implements Serializable{
 		this.capitao = capitao;
 	}
 
+	public Estadio getSede() {
+		return sede;
+	}
+
+	public void setSede(Estadio sede) {
+		this.sede = sede;
+	}
+
 	public Set<Jogador> getJogadores() {
 		return jogadores;
+	}
+
+	public Set<Campeonato> getCampeonatos() {
+		return campeonatos;
+	}
+
+	public Set<Partida> getPartidasComoMandante() {
+		return partidasComoMandante;
+	}
+
+	public Set<Partida> getPartidasComoVisitante() {
+		return partidasComoVisitante;
 	}
 
 	@Override

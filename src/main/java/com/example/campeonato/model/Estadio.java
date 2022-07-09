@@ -1,29 +1,27 @@
 package com.example.campeonato.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-public class Campeonato implements Serializable{
+public class Estadio implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private Integer ano;
 	private String nome;
 	
-	private Set<Partida> partidas = new HashSet<>();
-	private Set<Time> times = new HashSet<>();
+	private Time time;
+	private Endereco endereco;
 	
-	public Campeonato() {	
+	public Estadio() {
 	}
 
-	public Campeonato(Integer id, Integer ano, String nome) {
+	public Estadio(Integer id, String nome, Time time, Endereco endereco) {
 		super();
 		this.id = id;
-		this.ano = ano;
 		this.nome = nome;
+		this.time = time;
+		this.endereco = endereco;
 	}
 
 	public Integer getId() {
@@ -34,14 +32,6 @@ public class Campeonato implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -50,12 +40,20 @@ public class Campeonato implements Serializable{
 		this.nome = nome;
 	}
 
-	public Set<Partida> getPartidas() {
-		return partidas;
+	public Time getTime() {
+		return time;
 	}
 
-	public Set<Time> getTimes() {
-		return times;
+	public void setTime(Time time) {
+		this.time = time;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override
@@ -71,8 +69,8 @@ public class Campeonato implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Campeonato other = (Campeonato) obj;
+		Estadio other = (Estadio) obj;
 		return Objects.equals(id, other.id);
-	}
+	}	
 	
 }
