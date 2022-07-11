@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = "tb_jogador")
@@ -27,7 +30,8 @@ public class Jogador implements Serializable{
 	private String genero;
 	private Double altura;
 	
-	@OneToOne(mappedBy = "capitao")
+	@Nullable
+	@OneToOne(mappedBy = "capitao", optional = true, cascade = CascadeType.ALL)
 	private Time timeQueCapitaneia;
 	@ManyToOne
 	@JoinColumn(name = "time_id")

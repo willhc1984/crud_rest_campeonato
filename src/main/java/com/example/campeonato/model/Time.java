@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 @Table(name = "tb_time")
 public class Time implements Serializable{
@@ -26,7 +28,8 @@ public class Time implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	@OneToOne(optional = false)
+	@Nullable
+	@OneToOne(cascade=CascadeType.ALL, optional = true)	
 	private Jogador capitao;
 	
 	@OneToMany(mappedBy = "timeEmQueJoga")
@@ -43,11 +46,12 @@ public class Time implements Serializable{
 	public Time() {
 	}
 
-	public Time(Integer id, String nome, Estadio sede) {
+	public Time(Integer id, String nome, Estadio sede, Jogador capitao ) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.sede = sede;
+		this.capitao = capitao;
 	}
 
 	public Integer getId() {
