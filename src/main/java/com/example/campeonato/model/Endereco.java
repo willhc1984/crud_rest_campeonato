@@ -2,30 +2,38 @@ package com.example.campeonato.model;
 
 import java.util.Objects;
 
-import javax.persistence.Transient;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tb_endereco")
 public class Endereco {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String logradouro;
 	private Integer numero;
 	private String complemento;
 	private String bairro;
 	
-	@Transient
+	@OneToOne(mappedBy = "endereco", optional = true)
 	private Estadio estadio;
 	
 	public Endereco() {
 	}
 
-	public Endereco(Integer id, String logradouro, Integer numero, String complemento, String bairro, Estadio estadio) {
+	public Endereco(Integer id, String logradouro, Integer numero, String complemento, String bairro) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.complemento = complemento;
 		this.bairro = bairro;
-		this.estadio = estadio;
 	}
 
 	public Integer getId() {

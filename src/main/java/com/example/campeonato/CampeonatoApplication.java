@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.campeonato.model.Endereco;
 import com.example.campeonato.model.Estadio;
 import com.example.campeonato.model.Jogador;
 import com.example.campeonato.model.Time;
+import com.example.campeonato.repositories.EnderecoRepository;
 import com.example.campeonato.repositories.EstadioRepository;
 import com.example.campeonato.repositories.JogadorRepository;
 import com.example.campeonato.repositories.TimeRepository;
@@ -26,6 +28,9 @@ public class CampeonatoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private EstadioRepository estadioRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CampeonatoApplication.class, args);
@@ -57,12 +62,20 @@ public class CampeonatoApplication implements CommandLineRunner{
 		
 		timeRepository.saveAll(Arrays.asList(t1, t2, t3, t4, t5));
 		
-		Estadio e1 = new Estadio(null, "Morumbi", t3, null);
-		Estadio e2 = new Estadio(null, "Vila Belmiro", t2, null);
-		Estadio e3 = new Estadio(null, "Itaquerão", t1, null);
-		Estadio e4 = new Estadio(null, "Pq Antartica", t4, null);
-		//Estadio e5 = new Estadio(null, "teste", t4, null);	
-		estadioRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
+		Endereco end1 = new Endereco(null, "rua João Martini", 678, "1b", "São matheus");
+		Endereco end2 = new Endereco(null, "rua caribe", 678, "1b", "São conrado");
+		Endereco end3 = new Endereco(null, "av iravuvu", 554, "1b", "Vila Carol");
+		Endereco end4 = new Endereco(null, "av ipanema", 123, "1b", "Botucatu");
+		Endereco end5 = new Endereco(null, "Rua Miranda Azevedo", 56, "2b", "Centro");
+		
+		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4, end5));
+		
+		Estadio e1 = new Estadio(null, "Morumbi", t3, end1);
+		Estadio e2 = new Estadio(null, "Vila Belmiro", t2, end2);
+		Estadio e3 = new Estadio(null, "Itaquerão", t1, end3);
+		Estadio e4 = new Estadio(null, "Pq Antartica", t4, end4);
+		Estadio e5 = new Estadio(null, "Brinco de Ouro", t5, end5);	
+		estadioRepository.saveAll(Arrays.asList(e1, e2, e3, e4, e5));
 		
 		
 	}

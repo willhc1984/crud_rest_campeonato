@@ -27,7 +27,8 @@ public class Estadio implements Serializable{
 	@OneToOne
 	@JoinColumn(name = "time_id", unique = true)
 	private Time time;
-	@Transient
+	@OneToOne
+	@JoinColumn(name = "endereco_id", unique = true)
 	private Endereco endereco;
 	
 	public Estadio() {
