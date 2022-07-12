@@ -33,7 +33,8 @@ public class Partida implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "time_mandante_id")
 	private Time mandante;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "campeonato_id")
 	private Campeonato campeonato;
 	
 	public Partida() {

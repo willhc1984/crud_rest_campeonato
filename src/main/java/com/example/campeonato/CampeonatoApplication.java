@@ -8,11 +8,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.campeonato.model.Campeonato;
 import com.example.campeonato.model.Endereco;
 import com.example.campeonato.model.Estadio;
 import com.example.campeonato.model.Jogador;
 import com.example.campeonato.model.Partida;
 import com.example.campeonato.model.Time;
+import com.example.campeonato.repositories.CampeonatoRepository;
 import com.example.campeonato.repositories.EnderecoRepository;
 import com.example.campeonato.repositories.EstadioRepository;
 import com.example.campeonato.repositories.JogadorRepository;
@@ -36,6 +38,9 @@ public class CampeonatoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PartidaRepository partidaRepository;
+	
+	@Autowired
+	private CampeonatoRepository campeonatoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CampeonatoApplication.class, args);
@@ -81,16 +86,21 @@ public class CampeonatoApplication implements CommandLineRunner{
 		Estadio e5 = new Estadio(null, "Brinco de Ouro", t5, end5);	
 		estadioRepository.saveAll(Arrays.asList(e1, e2, e3, e4, e5));
 		
-		Partida p1 = new Partida(null, new Date(), 3, 5, t1, t2, null);
-		Partida p2 = new Partida(null, new Date(), 2, 5, t3, t4, null);
-		Partida p3 = new Partida(null, new Date(), 3, 7, t4, t5, null);
-		Partida p4 = new Partida(null, new Date(), 3, 9, t4, t3, null);
-		Partida p5 = new Partida(null, new Date(), 8, 5, t2, t5, null);	
-		Partida p6 = new Partida(null, new Date(), 3, 5, t1, t2, null);
-		Partida p7 = new Partida(null, new Date(), 3, 5, t1, t2, null);
-		Partida p8 = new Partida(null, new Date(), 3, 5, t1, t2, null);
-		partidaRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8));
+		Campeonato c1 = new Campeonato(null, 1995, "Paulistão");
+		Campeonato c2 = new Campeonato(null, 1995, "Brasileirão");
+		Campeonato c3 = new Campeonato(null, 1995, "Libertadores");
+		Campeonato c4 = new Campeonato(null, 1995, "Copa do Brasil");
+		campeonatoRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
 		
+		Partida p1 = new Partida(null, new Date(), 3, 5, t1, t2, c1);
+		Partida p2 = new Partida(null, new Date(), 2, 5, t3, t4, c1);
+		Partida p3 = new Partida(null, new Date(), 3, 7, t4, t5, c1);
+		Partida p4 = new Partida(null, new Date(), 3, 9, t4, t3, c2);
+		Partida p5 = new Partida(null, new Date(), 8, 5, t2, t5, c3);	
+		Partida p6 = new Partida(null, new Date(), 3, 5, t1, t2, c4);
+		Partida p7 = new Partida(null, new Date(), 3, 5, t1, t2, c4);
+		Partida p8 = new Partida(null, new Date(), 3, 5, t1, t2, c2);
+		partidaRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8));
 	}
 
 }

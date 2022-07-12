@@ -5,17 +5,27 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
+@Entity
+@Table(name = "tb_campeonato")
 public class Campeonato implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer ano;
 	private String nome;
 	
-	@Transient
+	@OneToMany(mappedBy = "campeonato")
 	private Set<Partida> partidas = new HashSet<>();
 	@Transient
 	private Set<Time> times = new HashSet<>();
