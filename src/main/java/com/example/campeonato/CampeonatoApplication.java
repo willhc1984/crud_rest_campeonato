@@ -11,10 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.example.campeonato.model.Endereco;
 import com.example.campeonato.model.Estadio;
 import com.example.campeonato.model.Jogador;
+import com.example.campeonato.model.Partida;
 import com.example.campeonato.model.Time;
 import com.example.campeonato.repositories.EnderecoRepository;
 import com.example.campeonato.repositories.EstadioRepository;
 import com.example.campeonato.repositories.JogadorRepository;
+import com.example.campeonato.repositories.PartidaRepository;
 import com.example.campeonato.repositories.TimeRepository;
 
 @SpringBootApplication
@@ -31,6 +33,9 @@ public class CampeonatoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private PartidaRepository partidaRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CampeonatoApplication.class, args);
@@ -66,8 +71,7 @@ public class CampeonatoApplication implements CommandLineRunner{
 		Endereco end2 = new Endereco(null, "rua caribe", 678, "1b", "São conrado");
 		Endereco end3 = new Endereco(null, "av iravuvu", 554, "1b", "Vila Carol");
 		Endereco end4 = new Endereco(null, "av ipanema", 123, "1b", "Botucatu");
-		Endereco end5 = new Endereco(null, "Rua Miranda Azevedo", 56, "2b", "Centro");
-		
+		Endereco end5 = new Endereco(null, "Rua Miranda Azevedo", 56, "2b", "Centro");		
 		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4, end5));
 		
 		Estadio e1 = new Estadio(null, "Morumbi", t3, end1);
@@ -77,6 +81,15 @@ public class CampeonatoApplication implements CommandLineRunner{
 		Estadio e5 = new Estadio(null, "Brinco de Ouro", t5, end5);	
 		estadioRepository.saveAll(Arrays.asList(e1, e2, e3, e4, e5));
 		
+		Partida p1 = new Partida(null, new Date(), 3, 5, t1, t2, null);
+		Partida p2 = new Partida(null, new Date(), 2, 5, t3, t4, null);
+		Partida p3 = new Partida(null, new Date(), 3, 7, t4, t5, null);
+		Partida p4 = new Partida(null, new Date(), 3, 9, t4, t3, null);
+		Partida p5 = new Partida(null, new Date(), 8, 5, t2, t5, null);	
+		Partida p6 = new Partida(null, new Date(), 3, 5, t1, t2, null);
+		Partida p7 = new Partida(null, new Date(), 3, 5, t1, t2, null);
+		Partida p8 = new Partida(null, new Date(), 3, 5, t1, t2, null);
+		partidaRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8));
 		
 	}
 

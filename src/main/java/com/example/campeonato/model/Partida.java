@@ -4,20 +4,34 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.annotation.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
+@Entity
+@Table(name = "tb_partida")
 public class Partida implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Date data;
 	private Integer pontuacaoMandante;
 	private Integer pontuacaoVisitante;
 	
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "time_visitante_id")
 	private Time visitante;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "time_mandante_id")
 	private Time mandante;
 	@Transient
 	private Campeonato campeonato;

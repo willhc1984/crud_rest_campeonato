@@ -36,9 +36,9 @@ public class Time implements Serializable{
 	private Set<Jogador> jogadores = new HashSet<>();
 	@Transient
 	private Set<Campeonato> campeonatos = new HashSet<>();
-	@Transient
+	@OneToMany(mappedBy = "mandante")
 	private Set<Partida> partidasComoMandante = new HashSet<>();
-	@Transient
+	@OneToMany(mappedBy = "visitante")
 	private Set<Partida> partidasComoVisitante = new HashSet<>();
 	@OneToOne(mappedBy = "time", cascade = CascadeType.MERGE)
 	private Estadio sede;
