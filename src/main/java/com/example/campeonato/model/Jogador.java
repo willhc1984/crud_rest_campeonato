@@ -13,8 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.springframework.lang.Nullable;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "tb_jogador")
@@ -30,8 +29,7 @@ public class Jogador implements Serializable{
 	private String genero;
 	private Double altura;
 	
-	@Nullable
-	@OneToOne(mappedBy = "capitao", optional = true, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "capitao", cascade = CascadeType.ALL)
 	private Time timeQueCapitaneia;
 	@ManyToOne
 	@JoinColumn(name = "time_id")
@@ -40,14 +38,14 @@ public class Jogador implements Serializable{
 	public Jogador() {
 	}
 
-	public Jogador(Integer id, String nome, Date nascimento, String genero, Double altura, Time timeEmQueJoga) {
+	public Jogador(Integer id, String nome, Date nascimento, String genero, Double altura, Time time) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.nascimento = nascimento;
 		this.genero = genero;
 		this.altura = altura;
-		this.timeEmQueJoga = timeEmQueJoga;
+		this.timeEmQueJoga = time;
 	}
 
 	public Integer getId() {

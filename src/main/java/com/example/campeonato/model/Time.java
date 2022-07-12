@@ -10,12 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.springframework.lang.Nullable;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "tb_time")
@@ -28,8 +28,8 @@ public class Time implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	@Nullable
-	@OneToOne(cascade=CascadeType.ALL, optional = true)	
+	@OneToOne
+	@JoinColumn(name = "jogador_id", unique = true)
 	private Jogador capitao;
 	
 	@OneToMany(mappedBy = "timeEmQueJoga")
@@ -40,13 +40,13 @@ public class Time implements Serializable{
 	private Set<Partida> partidasComoMandante = new HashSet<>();
 	@Transient
 	private Set<Partida> partidasComoVisitante = new HashSet<>();
-	@Transient
+	@OneToOne(mappedBy = "time", cascade = CascadeType.MERGE)
 	private Estadio sede;
 	
 	public Time() {
 	}
 
-	public Time(Integer id, String nome, Estadio sede, Jogador capitao ) {
+	public Time(Integer id, String nome, Estadio sede, Jogador capitao) {
 		super();
 		this.id = id;
 		this.nome = nome;
