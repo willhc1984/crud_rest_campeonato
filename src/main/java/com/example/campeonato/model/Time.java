@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "tb_time")
 public class Time implements Serializable{
@@ -34,6 +37,7 @@ public class Time implements Serializable{
 	@OneToMany(mappedBy = "timeEmQueJoga")
 	private Set<Jogador> jogadores = new HashSet<>();
 	
+	@JsonManagedReference
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "tb_time_campeonato", 
 			joinColumns = @JoinColumn(name = "time_id"),
@@ -126,11 +130,5 @@ public class Time implements Serializable{
 		Time other = (Time) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	@Override
-	public String toString() {
-		return "Time [id=" + id + ", nome=" + nome + "]";
-	}
-	
 
 }

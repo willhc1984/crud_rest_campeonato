@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_endereco")
 public class Endereco {
@@ -21,7 +23,8 @@ public class Endereco {
 	private String complemento;
 	private String bairro;
 	
-	@OneToOne(mappedBy = "endereco", optional = true)
+	@JsonIgnore
+	@OneToOne(mappedBy = "endereco")
 	private Estadio estadio;
 	
 	public Endereco() {

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_estadio")
 public class Estadio implements Serializable{
@@ -27,6 +29,7 @@ public class Estadio implements Serializable{
 	@OneToOne
 	@JoinColumn(name = "time_id", unique = true)
 	private Time time;
+	
 	@OneToOne
 	@JoinColumn(name = "endereco_id", unique = true)
 	private Endereco endereco;
