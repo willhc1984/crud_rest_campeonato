@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_jogador")
 public class Jogador implements Serializable{
@@ -29,8 +31,11 @@ public class Jogador implements Serializable{
 	private String genero;
 	private Double altura;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "capitao", cascade = CascadeType.ALL)
 	private Time timeQueCapitaneia;
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "time_id")
 	private Time timeEmQueJoga;
