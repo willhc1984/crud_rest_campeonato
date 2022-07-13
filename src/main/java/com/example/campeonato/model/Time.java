@@ -11,11 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "tb_time")
@@ -30,12 +30,16 @@ public class Time implements Serializable{
 	
 	@OneToOne
 	@JoinColumn(name = "jogador_id", unique = true)
-	private Jogador capitao;
-	
+	private Jogador capitao;	
 	@OneToMany(mappedBy = "timeEmQueJoga")
 	private Set<Jogador> jogadores = new HashSet<>();
-	@Transient
+	
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "tb_time_campeonato", 
+			joinColumns = @JoinColumn(name = "time_id"),
+			inverseJoinColumns = @JoinColumn(name = "campeonato_id"))
 	private Set<Campeonato> campeonatos = new HashSet<>();
+	
 	@OneToMany(mappedBy = "mandante")
 	private Set<Partida> partidasComoMandante = new HashSet<>();
 	@OneToMany(mappedBy = "visitante")

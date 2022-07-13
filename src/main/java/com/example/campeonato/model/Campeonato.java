@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -27,7 +28,7 @@ public class Campeonato implements Serializable{
 	
 	@OneToMany(mappedBy = "campeonato")
 	private Set<Partida> partidas = new HashSet<>();
-	@Transient
+	@ManyToMany(mappedBy = "campeonatos")
 	private Set<Time> times = new HashSet<>();
 	
 	public Campeonato() {	
