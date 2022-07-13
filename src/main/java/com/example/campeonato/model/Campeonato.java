@@ -40,6 +40,10 @@ public class Campeonato implements Serializable{
 		this.ano = ano;
 		this.nome = nome;
 	}
+	
+	public void addTime(Time time) {
+		times.add(time);
+	}
 
 	public Integer getId() {
 		return id;

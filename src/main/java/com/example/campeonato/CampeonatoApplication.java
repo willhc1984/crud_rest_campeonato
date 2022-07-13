@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -101,6 +102,19 @@ public class CampeonatoApplication implements CommandLineRunner{
 		Partida p7 = new Partida(null, new Date(), 3, 5, t1, t2, c4);
 		Partida p8 = new Partida(null, new Date(), 3, 5, t1, t2, c2);
 		partidaRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8));
+		
+		c1.addTime(t1); c1.addTime(t2); c1.addTime(t3); c1.addTime(t4); c1.addTime(t5);
+		c2.addTime(t1); c1.addTime(t2); c1.addTime(t3); c1.addTime(t4); c1.addTime(t5);
+		c3.addTime(t1); c1.addTime(t2); c1.addTime(t3); c1.addTime(t4); c1.addTime(t5);
+		c4.addTime(t1); c1.addTime(t2); c1.addTime(t3); c1.addTime(t4); c1.addTime(t5);
+		
+		t1.addCampeonato(c1); t1.addCampeonato(c2); t1.addCampeonato(c3); t1.addCampeonato(c4);
+		t2.addCampeonato(c1); t2.addCampeonato(c2); t2.addCampeonato(c3); t2.addCampeonato(c4);
+		t3.addCampeonato(c1); t3.addCampeonato(c2); t3.addCampeonato(c3); t3.addCampeonato(c4);
+		t4.addCampeonato(c1); t4.addCampeonato(c2); t4.addCampeonato(c3); t4.addCampeonato(c4);
+		t5.addCampeonato(c1); t5.addCampeonato(c2); t5.addCampeonato(c3); t5.addCampeonato(c4);
+		campeonatoRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
+		timeRepository.saveAll(Arrays.asList(t1, t2, t3, t4, t5));
 	}
 
 }

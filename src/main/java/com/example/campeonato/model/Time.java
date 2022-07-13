@@ -57,6 +57,10 @@ public class Time implements Serializable{
 		this.sede = sede;
 		this.capitao = capitao;
 	}
+	
+	public void addCampeonato(Campeonato campeonato) {
+		campeonatos.add(campeonato);
+	}
 
 	public Integer getId() {
 		return id;
