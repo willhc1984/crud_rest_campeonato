@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_campeonato")
@@ -28,10 +29,11 @@ public class Campeonato implements Serializable{
 	private Integer ano;
 	private String nome;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "campeonato")
 	private Set<Partida> partidas = new HashSet<>();
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany(mappedBy = "campeonatos")
 	private Set<Time> times = new HashSet<>();
 	

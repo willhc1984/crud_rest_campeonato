@@ -37,7 +37,6 @@ public class Time implements Serializable{
 	@OneToMany(mappedBy = "timeEmQueJoga")
 	private Set<Jogador> jogadores = new HashSet<>();
 	
-	@JsonManagedReference
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "tb_time_campeonato", 
 			joinColumns = @JoinColumn(name = "time_id"),
