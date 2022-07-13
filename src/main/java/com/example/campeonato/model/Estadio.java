@@ -26,10 +26,12 @@ public class Estadio implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "time_id", unique = true)
 	private Time time;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "endereco_id", unique = true)
 	private Endereco endereco;
