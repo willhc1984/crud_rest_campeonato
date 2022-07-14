@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_partida")
 public class Partida implements Serializable{
@@ -27,12 +29,17 @@ public class Partida implements Serializable{
 	private Integer pontuacaoMandante;
 	private Integer pontuacaoVisitante;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "time_visitante_id")
 	private Time visitante;
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "time_mandante_id")
 	private Time mandante;
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "campeonato_id")
 	private Campeonato campeonato;
