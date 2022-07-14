@@ -24,6 +24,7 @@ lugar por saldo de vitórias e em segundo lugar por saldo de gols.
 - Spring Boot
 - JPA / Hibernate
 - Maven
+- Banco de dados H2.
 
 # Autor
 
